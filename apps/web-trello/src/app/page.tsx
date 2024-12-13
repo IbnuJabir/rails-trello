@@ -34,7 +34,7 @@ export default function Home() {
   const words = ["organized", "productive", "collaborative", "streamlined"];
   return (
     <div className=" text-white bg-gray-950 font-sans h-full w-full">
-      <Navbar />
+      {/* <Navbar /> */}
       <BackgroundBeamsWithCollision>
         <Vortex
           // backgroundColor="black"

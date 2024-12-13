@@ -4,6 +4,9 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Provider from "@/components/Provider";
+import { metaDataConfig } from "../../config/metadat";
+import { SessionProvider } from "next-auth/react";
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,8 +20,17 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "On-Rails",
-  description: "Trello board for on-rails",
+  title: {
+    default: metaDataConfig.name,
+    template: `%s | ${metaDataConfig.name}`,
+  },
+  description: metaDataConfig.description,
+  icons: [
+    {
+      url: "/logo.jpg",
+      href: "/logo.jpg",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -29,23 +41,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-200`}
       >
-        <Provider>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={500}
-            hideProgressBar
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
-          {children}
-        </Provider>
+        <SessionProvider>
+          <Provider>
+            <ToastContainer
+              position="bottom-center"
+              autoClose={500}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
+            <Navbar />
+            {children}
+          </Provider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -22,10 +22,11 @@ import {
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { NavigationMenuDemo } from "./nav-menus";
+import { CreateBoard } from "./add-board";
 function Navbar() {
   const session = useSession();
   const user = session.data?.user;
-  console.log("user from session", user);
+  // console.log("user from session", user);
   return (
     <div className="w-full h-14 flex justify-between items-center  text-white px-10 border-b-[.2px] border-gray-700 bg-gray-950 ">
       <div className="flex items-center justify-between w-1/2">
@@ -39,7 +40,12 @@ function Navbar() {
           />
           <h2>Rails</h2>
         </Link>
-        {user && <NavigationMenuDemo />}
+        {user && (
+          <div className="flex items-center gap-4">
+            <NavigationMenuDemo />
+            <CreateBoard />
+          </div>
+        )}
       </div>
       <div>
         {session.status === "loading" && (

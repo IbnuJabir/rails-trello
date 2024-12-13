@@ -1,34 +1,3 @@
-// // This is your Prisma schema file,
-// // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-// generator client {
-//   provider = "prisma-client-js"
-// }
-
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
-
-// model User {
-//   id        String   @id @default(cuid())
-//   email     String   @unique
-//   name      String?
-//   password  String
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   // posts     Post[]
-// }
-
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
@@ -51,8 +20,12 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  BoardMember BoardMember[]
+  CardComment CardComment[]
+  boardsOwned Board[]       @relation("UserBoards") // Relation for boards owned by the user
+  Board       Board[]
 
   @@map("users")
 }
@@ -98,4 +71,78 @@ model VerificationToken {
 
   @@id([identifier, token])
   @@map("verification_tokens")
+}
+
+model Board {
+  id        String        @id @default(uuid())
+  name      String
+  isPrivate Boolean       @default(true)
+  ownerId   String
+  owner     User          @relation("UserBoards", fields: [ownerId], references: [id])
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  lists     List[]
+  members   BoardMember[]
+  User      User?         @relation(fields: [userId], references: [id])
+  userId    String?
+  bgImage   String?
+}
+
+model BoardMember {
+  id      String   @id @default(uuid())
+  boardId String
+  board   Board    @relation(fields: [boardId], references: [id])
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
+  role    Role
+  addedAt DateTime @default(now())
+}
+
+model List {
+  id        String   @id @default(uuid())
+  boardId   String
+  board     Board    @relation(fields: [boardId], references: [id])
+  name      String
+  position  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cards     Card[]
+}
+
+model Card {
+  id          String        @id @default(uuid())
+  listId      String
+  list        List          @relation(fields: [listId], references: [id])
+  title       String
+  description String?
+  position    Int
+  dueDate     DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  comments    CardComment[]
+  labels      CardLabel[]
+}
+
+model CardComment {
+  id        String   @id @default(uuid())
+  cardId    String
+  card      Card     @relation(fields: [cardId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  comment   String
+  createdAt DateTime @default(now())
+}
+
+model CardLabel {
+  id     String @id @default(uuid())
+  cardId String
+  card   Card   @relation(fields: [cardId], references: [id])
+  color  String
+  text   String
+}
+
+enum Role {
+  OWNER
+  EDITOR
+  VIEWER
 }

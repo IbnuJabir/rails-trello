@@ -22,7 +22,7 @@ import {
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { NavigationMenuDemo } from "./nav-menus";
-import { CreateBoard } from "./add-board";
+import { CreateBoard } from "./board/add-board";
 function Navbar() {
   const session = useSession();
   const user = session.data?.user;

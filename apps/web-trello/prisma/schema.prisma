@@ -25,7 +25,6 @@ model User {
   BoardMember BoardMember[]
   CardComment CardComment[]
   boardsOwned Board[]       @relation("UserBoards") // Relation for boards owned by the user
-  Board       Board[]
 
   @@map("users")
 }
@@ -83,8 +82,6 @@ model Board {
   updatedAt DateTime      @updatedAt
   lists     List[]
   members   BoardMember[]
-  User      User?         @relation(fields: [userId], references: [id])
-  userId    String?
   bgImage   String?
 }
 
@@ -96,6 +93,8 @@ model BoardMember {
   user    User     @relation(fields: [userId], references: [id])
   role    Role
   addedAt DateTime @default(now())
+
+  @@unique([boardId, userId]) // Composite unique constraint
 }
 
 model List {

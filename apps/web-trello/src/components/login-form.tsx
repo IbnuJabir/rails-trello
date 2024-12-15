@@ -19,6 +19,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { signIn } from "next-auth/react";
 import { trpc } from "@/server/client";
+import Loader from "./loader";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -93,11 +94,7 @@ export default function LoginForm() {
               className="w-full"
               disabled={loginUser.isPending}
             >
-              {loginUser.isPending ? (
-                <span className="loading loading-dots loading-md text-white bg-white"></span>
-              ) : (
-                "Login"
-              )}
+              {loginUser.isPending ? <Loader /> : "Login"}
             </Button>
           </form>
           <p className="text-gray-500 text-center py-4 text-sm">

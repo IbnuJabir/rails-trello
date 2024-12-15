@@ -22,13 +22,13 @@ import {
 import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { NavigationMenuDemo } from "./nav-menus";
-import { CreateBoard } from "./board/add-board";
+import { CreateBoard } from "./boardComponent/add-board";
 function Navbar() {
   const session = useSession();
   const user = session.data?.user;
   // console.log("user from session", user);
   return (
-    <div className="w-full h-14 flex justify-between items-center  text-white px-10 border-b-[.2px] border-gray-700 bg-gray-950 ">
+    <div className="w-full h-14 flex justify-between items-center  text-white px-10 border-b-[.2px] border-gray-700 bg-gray-950 z-[99999999] sticky ">
       <div className="flex items-center justify-between w-1/2">
         <Link href="/" className="flex items-center gap-2">
           <Image

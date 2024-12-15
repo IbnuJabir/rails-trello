@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { trpc } from "@/server/client";
+import Loader from "./loader";
 
 export function SignupForm() {
   const router = useRouter();
@@ -108,11 +109,7 @@ export function SignupForm() {
             className="w-full flex justify-center items-center"
             disabled={addUser.isPending}
           >
-            {addUser.isPending ? (
-              <span className="loading loading-spinner text-info loading-lg size-10"></span>
-            ) : (
-              "Sign Up"
-            )}
+            {addUser.isPending ? <Loader /> : "Sign Up"}
           </Button>
         </form>
         <p className="text-gray-500 text-center py-4 text-sm">

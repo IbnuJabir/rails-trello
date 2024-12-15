@@ -26,6 +26,26 @@ export const boardRouter = router({
     });
   }),
 
+  // Get a single board by ID
+  getBoard: protectedProcedure
+    .input(z.object({ boardId: z.string() }))
+    .query(async ({ input, ctx }) => {
+      const userId = ctx.session?.user?.id;
+      if (!userId) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "User not authenticated",
+        });
+      }
+
+      return await prisma.board.findUnique({
+        where: { id: input.boardId },
+        include: {
+          members: true,
+        },
+      });
+    }),
+
   // Create a new board
   createBoard: protectedProcedure
     .input(

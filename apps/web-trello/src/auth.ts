@@ -1,19 +1,31 @@
-import NextAuth, { User } from "next-auth";
+import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
+import Credentials from "next-auth/providers/credentials";
+import { Adapter } from "next-auth/adapters";
+import { encode as defaultEncode } from "next-auth/jwt";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/lib/db";
-import Credentials from "next-auth/providers/credentials";
 import { getUserFromDb } from "@/server/actions/actions";
-import { encode as defaultEncode } from "next-auth/jwt";
 import { v4 as uuid } from "uuid";
-import { Adapter } from "next-auth/adapters";
+import { User, type DefaultSession } from "next-auth";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      userId: string;
+    } & DefaultSession["user"];
+  }
+}
 
 const adapter = PrismaAdapter(prisma) as Adapter;
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   theme: {
-    logo: "/favicon.ico",
+    logo: "/logo.jpg",
     brandColor: "#000000",
     colorScheme: "auto",
   },

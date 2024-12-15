@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Provider from "@/components/Provider";
+import TrpcProvider from "@/components/Provider";
 import { metaDataConfig } from "../../config/metadat";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/navbar";
@@ -44,7 +44,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-200`}
       >
         <SessionProvider>
-          <Provider>
+          <TrpcProvider>
             <ToastContainer
               position="bottom-center"
               autoClose={500}
@@ -59,7 +59,7 @@ export default function RootLayout({
             />
             <Navbar />
             {children}
-          </Provider>
+          </TrpcProvider>
         </SessionProvider>
       </body>
     </html>

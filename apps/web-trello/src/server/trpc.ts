@@ -32,16 +32,18 @@ export const publicProcedure = t.procedure;
 /**
  * Protected procedure
  */
-export const protectedProcedure = t.procedure.use(function isAuthed(opts) {
-  if (!opts.ctx.session?.user?.email) {
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-    });
+export const protectedProcedure = t.procedure.use(function isAuthed({
+  ctx,
+  next,
+}) {
+  if (!ctx.session || !ctx.session.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
-  return opts.next({
+  return next({
     ctx: {
-      // Infers the `session` as non-nullable
-      session: opts.ctx.session,
+      ...ctx,
+      // Infers that `session` is non-nullable
+      session: { ...ctx.session, user: ctx.session.user },
     },
   });
 });

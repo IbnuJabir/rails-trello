@@ -1,0 +1,88 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  grid-auto-rows: max-content;
+  overflow: hidden;
+  box-sizing: border-box;
+  appearance: none;
+  outline: none;
+  min-width: 280px;
+  margin: 10px;
+  border-radius: 5px;
+  min-height: 200px;
+  transition: background-color 350ms ease;
+  background-color: #f1f2f4;
+  border: 1px solid #e0e0e0;
+  font-size: 1em;
+
+  ul {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(var(--columns, 1), 1fr);
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+  }
+
+  &.horizontal {
+    width: 100%;
+
+    ul {
+      grid-auto-flow: column;
+    }
+  }
+
+  &.hover {
+    background-color: #e9ecef;
+  }
+
+  &.unstyled {
+    overflow: visible;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  &.scrollable {
+    ul {
+      overflow-y: auto;
+    }
+  }
+
+  &.placeholder {
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    border-style: dashed;
+    border-color: rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &.shadow {
+    box-shadow: 0 1px 10px 0 rgba(34, 33, 81, 0.1);
+  }
+}
+
+.Header {
+  display: flex;
+  padding: 10px 15px;
+  padding-right: 8px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e4e5e9;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight: 600;
+}
+
+.Actions {
+  display: flex;
+}
+
+.clickable {
+  cursor: pointer;
+}

@@ -2,8 +2,8 @@
 import React from "react";
 import { LineWave } from "react-loader-spinner";
 import ScaleLoader from "react-spinners/ScaleLoader";
-function Loader() {
-  return <ScaleLoader color="#fff" height={20} width={3} />;
+function Loader({ color = "#fff", height = 20, width = 3 }) {
+  return <ScaleLoader color={color} height={height} width={width} />;
 }
 
 export default Loader;

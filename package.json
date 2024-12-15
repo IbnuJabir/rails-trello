@@ -5,7 +5,8 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "rm -rf **/node_modules node_modules"
   },
   "dependencies": {
     "@prisma/client": "^6.0.1",
@@ -21,7 +22,7 @@
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.16",
     "turbo": "^2.3.3",
-    "typescript": "5"
+    "typescript": "^5"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

@@ -1,15 +1,14 @@
-import getSession from "@/lib/getSession";
-import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-// import { getSession } from "next-auth/react";
-
+import { auth } from "@/auth";
+// import getSession from "@/lib/getSession";
 /**
  * Creates context for an incoming request
  *
  */
-export async function createContext(opts: CreateNextContextOptions) {
-  const session = await getSession();
+export async function createContext(opts: { req: Request; res: Response }) {
+  const session = await auth();
 
   return {
+    ...opts,
     session,
   };
 }

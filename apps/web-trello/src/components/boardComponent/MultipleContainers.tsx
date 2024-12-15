@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal, unstable_batchedUpdates } from "react-dom";
 import {
   CancelDrop,
   closestCenter,
@@ -16,11 +15,11 @@ import {
   MouseSensor,
   TouchSensor,
   Modifiers,
-  useDroppable,
+  // useDroppable,
   UniqueIdentifier,
   useSensors,
   useSensor,
-  MeasuringStrategy,
+  // MeasuringStrategy,
   KeyboardCoordinateGetter,
   defaultDropAnimationSideEffects,
 } from "@dnd-kit/core";
@@ -39,13 +38,13 @@ import { coordinateGetter as multipleContainersCoordinateGetter } from "./multip
 
 import { Item } from "../Item";
 import { Container, ContainerProps } from "../Container";
-
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus } from "lucide-react";
+// import { Plus } from "lucide-react";
 import { useAtom } from "jotai";
 import { boardAtom, listsAtom, cardsAtom } from "@/lib/atoms";
 import { trpc } from "@/server/client";
+import { useParams } from "next/navigation";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
@@ -139,7 +138,7 @@ interface Props {
   wrapperStyle?(args: { index: number }): React.CSSProperties;
   minimal?: boolean;
   modifiers?: Modifiers;
-  renderItem?: any;
+  // renderItem?: any;
   strategy?: SortingStrategy;
   vertical?: boolean;
 }
@@ -149,7 +148,6 @@ const PLACEHOLDER_ID = "placeholder";
 const empty: UniqueIdentifier[] = [];
 
 export function MultipleContainers({
-  boardId,
   adjustScale = false,
   cancelDrop,
   columns,
@@ -159,13 +157,17 @@ export function MultipleContainers({
   wrapperStyle = () => ({}),
   minimal = false,
   modifiers,
-  renderItem,
+  // renderItem,
   strategy = verticalListSortingStrategy,
   vertical = false,
 }: Props) {
-  const [board, setBoard] = useAtom(boardAtom);
+  const [, setBoard] = useAtom(boardAtom);
   const [lists, setLists] = useAtom(listsAtom);
   const [cards, setCards] = useAtom(cardsAtom);
+
+  const params = useParams<{ boardId: string }>();
+  const boardId = params.boardId;
+  console.log("board ID from the child", params.boardId);
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const lastOverId = useRef<UniqueIdentifier | null>(null);
@@ -180,40 +182,30 @@ export function MultipleContainers({
       // trpc.list.getAll.invalidate({ boardId });
     },
   });
-  const updateList = trpc.list.update.useMutation({
-    onSuccess: () => {
-      utils.list.getAll.invalidate({ boardId });
-      // trpc.list.getAll.invalidate({ boardId });
-    },
-  });
+  // const updateList = trpc.list.update.useMutation({
+  //   onSuccess: () => {
+  //     utils.list.getAll.invalidate({ boardId });
+  //     // trpc.list.getAll.invalidate({ boardId });
+  //   },
+  // });
   const createCard = trpc.card.create.useMutation({
     onSuccess: () => {
       // trpc.card.getAll.invalidate({ boardId });
       utils.list.getAll.invalidate({ boardId });
     },
   });
-  const updateCard = trpc.card.update.useMutation({
-    onSuccess: () => {
-      // trpc.card.getAll.invalidate({ boardId });
-      utils.list.getAll.invalidate({ boardId });
-    },
-  });
+  // const updateCard = trpc.card.update.useMutation({
+  //   onSuccess: () => {
+  //     // trpc.card.getAll.invalidate({ boardId });
+  //     utils.list.getAll.invalidate({ boardId });
+  //   },
+  // });
 
   const updateCardPosition = trpc.card.updatePosition.useMutation();
   const updateListPositions = trpc.list.updateListPositions.useMutation();
   useEffect(() => {
     // Fetch board details and update state
-    utils.board.getBoard.fetch({ boardId }).then((boardData) => {
-      setBoard({
-        ...boardData,
-        createdAt: new Date(boardData.createdAt), // Convert createdAt to Date
-        updatedAt: new Date(boardData.updatedAt), // Convert updatedAt to Date
-        members: boardData.members.map((member) => ({
-          ...member,
-          addedAt: new Date(member.addedAt), // Convert each member's addedAt to Date
-        })),
-      });
-    });
+    utils.board.getBoard.fetch({ boardId }).then(setBoard);
     utils.list.getAll.fetch({ boardId }).then(setLists);
     utils.card.getAll.fetch({ boardId }).then(setCards);
   }, [boardId]);
@@ -434,7 +426,7 @@ export function MultipleContainers({
               );
 
               // Update list positions
-              const newLists = arrayMove(lists, activeIndex, overIndex);
+              // const newLists = arrayMove(lists, activeIndex, overIndex);
               // for (let i = 0; i < newLists.length; i++) {
               //   updateList.mutate({
               //     id: newLists[i].id,
@@ -689,8 +681,8 @@ function SortableItem({
   handle,
   renderItem,
   // style,
-  containerId,
-  getIndex,
+  // containerId,
+  // getIndex,
   wrapperStyle,
 }: {
   containerId: UniqueIdentifier;
@@ -708,8 +700,8 @@ function SortableItem({
     listeners,
     isDragging,
     isSorting,
-    over,
-    overIndex,
+    // over,
+    // overIndex,
     transform,
     transition,
     attributes,

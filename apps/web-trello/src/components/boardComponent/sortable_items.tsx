@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
-import { DraggableSyntheticListeners } from "@dnd-kit/core";
 
 // Define prop types
 interface ItemProps {

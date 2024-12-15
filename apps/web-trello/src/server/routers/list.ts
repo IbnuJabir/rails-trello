@@ -41,8 +41,8 @@ export const listRouter = router({
       )
     )
     .mutation(async ({ input }) => {
-      const listUpdates: Prisma.PrismaPromise<any>[] = [];
-      const cardUpdates: Prisma.PrismaPromise<any>[] = [];
+      const listUpdates = [];
+      const cardUpdates = [];
 
       Object.entries(input).forEach(([listId, cardIds], listIndex) => {
         // Update the list's position

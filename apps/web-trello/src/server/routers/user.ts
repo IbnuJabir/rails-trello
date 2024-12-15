@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { protectedProcedure, router } from "../trpc";
 import prisma from "@/lib/db";
 import { signInSchema, signUpSchema } from "@/lib/schema";

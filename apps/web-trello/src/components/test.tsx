@@ -16,7 +16,7 @@ function Test() {
       <h1 className="text-4xl font-bold text-center sm:text-5xl">
         Users ({data?.length})
       </h1>
-      {data?.map((user: any) => <li key={user.id}>{user.name}</li>)}
+      {data?.map((user) => <li key={user.id}>{user.name}</li>)}
     </main>
   );
 }

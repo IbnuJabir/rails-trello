@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState, FormEvent } from "react";
+import { FormEvent } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -23,7 +23,7 @@ import Loader from "./loader";
 export function SignupForm() {
   const router = useRouter();
   const addUser = trpc.user.addUser.useMutation({
-    onSuccess: (data) => {
+    onSuccess: () => {
       router.push("/");
       toast.success(`User Registered successfully!`);
     },

@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthResult } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
@@ -22,7 +22,7 @@ declare module "next-auth" {
 }
 
 const adapter = PrismaAdapter(prisma) as Adapter;
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const nextAuthResult = NextAuth({
   trustHost: true,
   theme: {
     logo: "/logo.jpg",
@@ -58,7 +58,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
+    async jwt({ token, account }) {
       if (account?.provider === "credentials") {
         token.credentials = true;
       }
@@ -90,3 +90,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 });
+
+export const auth: NextAuthResult["auth"] = nextAuthResult.auth;
+export const signIn: NextAuthResult["signIn"] = nextAuthResult.signIn;
+export const signOut: NextAuthResult["signOut"] = nextAuthResult.signOut;
+// export const getSession: NextAuthResult["getSession"] = nextAuthResult.getSession;
+export const { handlers }: NextAuthResult = nextAuthResult;

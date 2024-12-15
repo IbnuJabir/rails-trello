@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, FormEvent } from "react";
+import { FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,7 +24,7 @@ import Loader from "./loader";
 export default function LoginForm() {
   const router = useRouter();
   const loginUser = trpc.user.loginUser.useMutation({
-    onSuccess: (data) => {
+    onSuccess: () => {
       router.push("/");
       toast.success(`User Logged in successfully!`);
     },

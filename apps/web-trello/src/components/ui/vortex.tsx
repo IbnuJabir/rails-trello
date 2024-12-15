@@ -134,7 +134,7 @@ export const Vortex = (props: VortexProps) => {
     const n = noise3D(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU;
     const vx = lerp(particleProps[i3], Math.cos(n), 0.5);
     const vy = lerp(particleProps[i4], Math.sin(n), 0.5);
-    const life = particleProps[i5];
+    let life = particleProps[i5];
     const ttl = particleProps[i6];
     const speed = particleProps[i7];
     const x2 = x + vx * speed;

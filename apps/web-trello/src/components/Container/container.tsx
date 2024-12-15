@@ -79,3 +79,5 @@ export const Container = forwardRef<HTMLDivElement, Props>(
     );
   }
 );
+
+Container.displayName = "Container";

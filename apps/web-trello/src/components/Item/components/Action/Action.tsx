@@ -32,3 +32,4 @@ export const Action = forwardRef<HTMLButtonElement, Props>(
     );
   }
 );
+Action.displayName = "Action";

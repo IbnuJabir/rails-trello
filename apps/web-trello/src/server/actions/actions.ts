@@ -40,7 +40,7 @@ export async function getUserFromDb(email: string, password: string) {
       success: true,
       data: existedUser,
     };
-  } catch (error: any) {
+  } catch (error) {
     return {
       success: false,
       message: error.message,

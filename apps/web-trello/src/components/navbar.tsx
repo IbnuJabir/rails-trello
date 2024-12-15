@@ -3,11 +3,9 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import getSession from "@/lib/getSession";
-import { trpc } from "@/server/client";
 import { signOut, useSession } from "next-auth/react";
 
-import { LogOut, Settings, User, UserPlus, Users } from "lucide-react";
+import { LogOut, Settings, User, Users } from "lucide-react";
 
 import {
   DropdownMenu,

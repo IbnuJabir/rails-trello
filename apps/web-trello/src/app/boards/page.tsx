@@ -1,5 +1,4 @@
 "use client";
-import { CreateBoard } from "@/components/boardComponent/add-board";
 import { trpc } from "@/server/client";
 import Image from "next/image";
 import Link from "next/link";

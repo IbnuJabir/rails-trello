@@ -3,38 +3,10 @@ import { trpc } from "@/server/client";
 import { useParams } from "next/navigation";
 import React from "react";
 import defaultBgImage from "@/assets/bg1.jpg";
-import { TrelloBoardBar } from "@/components/board/boardNav";
-import { Board } from "@/types/trello";
+import { TrelloBoardBar } from "@/components/boardComponent/boardNav";
 import { MultipleContainers } from "@/components/boardComponent/MultipleContainers";
 import { rectSortingStrategy } from "@dnd-kit/sortable";
 import LoadingPage from "@/app/loading";
-import { BoardContent } from "@/components/BoardContent";
-import { useAtom } from "jotai";
-import { boardAtom } from "@/lib/atoms";
-// This would typically come from an API or database
-const initialBoard: Board = {
-  id: "board-1",
-  lists: [
-    {
-      id: "list-1",
-      title: "To Do",
-      cards: [
-        { id: "card-1", content: "Learn React" },
-        { id: "card-2", content: "Learn Next.js" },
-      ],
-    },
-    {
-      id: "list-2",
-      title: "In Progress",
-      cards: [{ id: "card-3", content: "Build Trello Clone" }],
-    },
-    {
-      id: "list-3",
-      title: "Done",
-      cards: [{ id: "card-4", content: "Set up development environment" }],
-    },
-  ],
-};
 function BoardDetail() {
   const params = useParams<{ boardId: string }>();
   console.log("boardId from params", params.boardId);
@@ -78,7 +50,7 @@ function BoardDetail() {
             // itemCount={5}
             strategy={rectSortingStrategy}
             vertical={false}
-            boardId={data?.id}
+            boardId={params.boardId}
           />
           {/* <BoardContent boardId={data?.id} /> */}
         </main>

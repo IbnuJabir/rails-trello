@@ -1,17 +1,9 @@
 "use client";
-import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import prisma from "@/lib/db";
-import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import getSession from "@/lib/getSession";
-import Test from "@/components/test";
-import { Input } from "@/components/ui/input";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { FlipWords } from "@/components/ui/flip-words";
 import { Vortex } from "@/components/ui/vortex";
-import Navbar from "@/components/navbar";
 import BoxReveal from "@/components/ui/box-reveal";
 
 export default function Home() {

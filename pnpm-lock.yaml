@@ -88,6 +88,9 @@ importers:
 
   apps/web-trello:
     dependencies:
+      '@auth/core':
+        specifier: ^0.37.4
+        version: 0.37.4
       '@auth/prisma-adapter':
         specifier: ^2.7.4
         version: 2.7.4(@prisma/client@6.0.1(prisma@6.0.1))

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { NavigationMenuDemo } from "./nav-menus";
 import Account from "./account";
+import { CreateBoard } from "./ui/add-board";
 
 function Navbar() {
   return (
@@ -21,8 +22,8 @@ function Navbar() {
         </Link>
         {/* {user && ( */}
         <div className="flex items-center gap-4">
+          <CreateBoard />
           <NavigationMenuDemo />
-          {/* <CreateBoard /> */}
         </div>
         {/* )} */}
       </div>

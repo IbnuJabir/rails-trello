@@ -92,10 +92,7 @@ export function CreateBoard() {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <div className="flex items-center gap-2">
-          <Plus className="bg-black text-white rounded-sm p-1 size-6 cursor-pointer" />
-          Create a New board
-        </div>
+        <Plus className="bg-black text-white rounded-sm p-1 size-7 cursor-pointer hover:bg-accent/50 hover:text-black" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

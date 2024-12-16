@@ -5,10 +5,11 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { FlipWords } from "@/components/ui/flip-words";
 import { Vortex } from "@/components/ui/vortex";
 import BoxReveal from "@/components/ui/box-reveal";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
-  // const session = await getSession();
-  // const user = session?.user;
+  const session = useSession();
+  const user = session.data?.user;
   // if (!user) redirect("/login?callbackUrl=/");
   const words = ["organized", "productive", "collaborative", "streamlined"];
   return (
@@ -32,11 +33,19 @@ export default function Home() {
               <FlipWords words={words} /> <br />
               Workflow with Our Boards
             </div>
-            <Link href="login">
-              <Button className="bg-white text-black hover:bg-gray-300">
-                Get Started
-              </Button>
-            </Link>
+            {user ? (
+              <Link href="boards">
+                <Button className="bg-white text-black hover:bg-gray-300">
+                  Go to Boards
+                </Button>
+              </Link>
+            ) : (
+              <Link href="login">
+                <Button className="bg-white text-black hover:bg-gray-300">
+                  Get Started
+                </Button>
+              </Link>
+            )}
           </main>
           <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
         </Vortex>

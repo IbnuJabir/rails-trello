@@ -33,29 +33,29 @@ const components: { title: string; href: string; description: string }[] = [
   },
   {
     title: "Tasks",
-    href: "#",
+    href: "/boards",
     description: "Track and manage all your tasks across different boards.",
   },
   {
     title: "Teams",
-    href: "#",
+    href: "/boards",
     description: "Collaborate with team members and manage team settings.",
   },
   {
     title: "Notifications",
-    href: "#",
+    href: "/boards",
     description:
       "Stay updated with the latest notifications about your tasks and projects.",
   },
   {
     title: "Settings",
-    href: "#",
+    href: "/boards",
     description:
       "Adjust your preferences, account settings, and notifications.",
   },
   {
     title: "Help",
-    href: "#",
+    href: "/boards",
     description: "Find guides, FAQs, and contact support for assistance.",
   },
 ];
@@ -74,7 +74,7 @@ export function NavigationMenuDemo() {
                   <NavigationMenuLink asChild>
                     <Link
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/"
+                      href="/boards"
                     >
                       <Image
                         src="/logo.jpg"
@@ -94,14 +94,14 @@ export function NavigationMenuDemo() {
                     </Link>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="#" title="Boards Overview">
+                <ListItem href="/boards" title="Boards Overview">
                   Create, customize, and manage boards effortlessly for all your
                   projects.
                 </ListItem>
-                <ListItem href="#" title="Getting Started">
+                <ListItem href="/boards" title="Getting Started">
                   Step-by-step guide to set up and organize your workspace.
                 </ListItem>
-                <ListItem href="#" title="Collaboration">
+                <ListItem href="/boards" title="Collaboration">
                   Seamless tools for team collaboration and task management.
                 </ListItem>
               </ul>
@@ -191,9 +191,6 @@ export function NavigationMenuDemo() {
             ))}
           </nav>
           <footer className="flex flex-col justify-items-start mt-2 gap-3 absolute bottom-5 w-full">
-            <div onClick={() => setOpen(false)}>
-              <CreateBoard />
-            </div>
             <Account />
             {/* <button className="btn btn-primary">Create New Board</button> */}
           </footer>

@@ -1,12 +1,31 @@
 # Rails Trello
 
+![LOGO](./apps/web-trello/public/logo.jpg)
+
 ## Live
 
 [Live Demo](https://trello-on-rails.vercel.app)
 
 ## Screenshots
 
-_Include screenshots of key pages and features, such as the home page, boards page, lists, and drag-and-drop functionality to provide a visual overview._
+### Desktop
+
+![s1](./apps/web-trello/src/assets/ss1.png)
+![s1](./apps/web-trello/src/assets/ss2.png)
+![s1](./apps/web-trello/src/assets/ss3.png)
+
+### Tablet
+
+![s1](./apps/web-trello/src/assets/ss4.png)
+![s1](./apps/web-trello/src/assets/ss5.png)
+![s1](./apps/web-trello/src/assets/ss6.png)
+
+### Mobile
+
+![s1](./apps/web-trello/src/assets/ss7.png)
+![s1](./apps/web-trello/src/assets/ss8.png)
+![s1](./apps/web-trello/src/assets/ss9.png)
+![s1](./apps/web-trello/src/assets/ss10.png)
 
 ---
 

@@ -33,6 +33,7 @@ import bg5 from "@/assets/bg5.jpg";
 import bg6 from "@/assets/bg6.jpg";
 import Image from "next/image";
 import Loader from "../loader";
+import { useRouter } from "next/navigation";
 
 const backgrounds = [bg1, bg2, bg3, bg4, bg5, bg6];
 
@@ -43,6 +44,7 @@ type Board = {
 };
 
 export function CreateBoard() {
+  const router = useRouter();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [board, setBoard] = useState<Board>({
     name: "",
@@ -56,6 +58,7 @@ export function CreateBoard() {
       console.log(data);
       toast.success("Board created successfully!");
       setIsDialogOpen(false); // Close the dialog on success
+      // router.push(`/board/${data.id}`);
     },
     onError: (error) => {
       console.log(error);

@@ -32,7 +32,7 @@ function BoardDetail() {
   }
   return (
     <div
-      className="w-full bg-cover bg-center overflow-hidden"
+      className="w-full min-h-screen bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: `url(${bgImage})` }} // Dynamically set the background image
     >
       <TrelloBoardBar

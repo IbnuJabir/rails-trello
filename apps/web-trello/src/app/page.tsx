@@ -21,7 +21,7 @@ export default function Home() {
           baseHue={120}
           className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
         >
-          <main className="flex flex-col gap-8 items-center justify-center">
+          <main className="flex flex-col gap-8 items-center justify-center pl-4 md:pl-0">
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <h1 className="text-[3.5rem] font-semibold font-montserrat">
                 Rails Trello<span className="text-[#5046e6]">.</span>

@@ -85,24 +85,24 @@ export function NavigationMenuDemo() {
                       />
                       {/* <Icons.logo className="h-6 w-6" /> */}
                       <div className="mb-2 mt-4 text-lg font-medium">
-                        Rails Trello
+                        shadcn/ui
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                        Effortlessly organize your projects with beautifully
-                        crafted boards. Collaborative. Scalable. Open Source.
+                        Beautifully designed components that you can copy and
+                        paste into your apps. Accessible. Customizable. Open
+                        Source.
                       </p>
                     </Link>
                   </NavigationMenuLink>
                 </li>
-                <ListItem href="#" title="Boards Overview">
-                  Create, customize, and manage boards effortlessly for all your
-                  projects.
+                <ListItem href="/docs" title="Introduction">
+                  Re-usable components built using Radix UI and Tailwind CSS.
                 </ListItem>
-                <ListItem href="#" title="Getting Started">
-                  Step-by-step guide to set up and organize your workspace.
+                <ListItem href="/docs/installation" title="Installation">
+                  How to install dependencies and structure your app.
                 </ListItem>
-                <ListItem href="#" title="Collaboration">
-                  Seamless tools for team collaboration and task management.
+                <ListItem href="/docs/primitives/typography" title="Typography">
+                  Styles for headings, paragraphs, lists...etc
                 </ListItem>
               </ul>
             </NavigationMenuContent>

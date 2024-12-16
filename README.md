@@ -4,7 +4,7 @@
 
 ## Live
 
-[Live Demo](https://trello-on-rails.vercel.app)
+- Check out the live demo of the application [here](https://trello-on-rails.vercel.app)
 
 ## Screenshots
 

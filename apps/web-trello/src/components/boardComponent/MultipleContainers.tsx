@@ -45,6 +45,7 @@ import { useAtom } from "jotai";
 import { boardAtom, listsAtom, cardsAtom } from "@/lib/atoms";
 import { trpc } from "@/server/client";
 import { useParams } from "next/navigation";
+import { Button } from "../ui/button";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
@@ -321,6 +322,7 @@ export function MultipleContainers({
     });
   }, [items]);
 
+  const [listName, setListName] = useState("");
   const handleAddList = async (name: string) => {
     if (name.trim() !== "") {
       const newList = await createList.mutateAsync({
@@ -329,6 +331,19 @@ export function MultipleContainers({
         position: lists.length,
       });
       setLists((prev) => [...prev, newList]);
+    }
+  };
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    if (listName.trim()) {
+      handleAddList(listName);
+      setListName(""); // Clear input after submission
+    }
+  };
+  const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && listName.trim()) {
+      handleAddList(listName);
+      setListName(""); // Clear input after pressing Enter
     }
   };
 
@@ -565,7 +580,7 @@ export function MultipleContainers({
                   );
                 })}
               </SortableContext>
-              <div className="p-2">
+              <div className="p-2 flex items-center justify-center gap-2">
                 <Input
                   placeholder="Add a card..."
                   onKeyPress={(e) => {
@@ -575,6 +590,7 @@ export function MultipleContainers({
                     }
                   }}
                 />
+                {/* <Button type="submit">Add Card</Button> */}
               </div>
             </DroppableContainer>
           ))}
@@ -585,17 +601,18 @@ export function MultipleContainers({
               items={empty}
               placeholder
             >
-              <div className="p-2">
+              <form
+                onSubmit={onSubmit}
+                className="p-2 flex items-center justify-center gap-2"
+              >
                 <Input
+                  value={listName}
+                  onChange={(e) => setListName(e.target.value)} // Update input value in state
                   placeholder="Add a list..."
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      handleAddList(e.currentTarget.value);
-                      e.currentTarget.value = "";
-                    }
-                  }}
+                  onKeyPress={onKeyPress}
                 />
-              </div>
+                <Button type="submit">Add List</Button>
+              </form>
             </DroppableContainer>
           )}
         </SortableContext>

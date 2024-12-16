@@ -7,19 +7,6 @@ import { Vortex } from "@/components/ui/vortex";
 import BoxReveal from "@/components/ui/box-reveal";
 
 export default function Home() {
-  // const users = await prisma.user.findMany({
-  //   //exclude password
-  //   select: {
-  //     id: true,
-  //     name: true,
-  //     email: true,
-  //     image: true,
-  //   },
-  // });
-  // const userCont = await prisma.user.count();
-  // // console.log("users", users);
-  // console.log("Total Number of Users", userCont);
-
   // const session = await getSession();
   // const user = session?.user;
   // if (!user) redirect("/login?callbackUrl=/");
@@ -29,16 +16,12 @@ export default function Home() {
       {/* <Navbar /> */}
       <BackgroundBeamsWithCollision>
         <Vortex
-          // backgroundColor="black"
           rangeY={800}
           particleCount={500}
           baseHue={120}
           className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
         >
           <main className="flex flex-col gap-8 items-center justify-center">
-            {/* <h1 className="text-4xl font-bold text-center font-montserrat sm:text-5xl">
-              Rails Trello
-            </h1> */}
             <BoxReveal boxColor={"#5046e6"} duration={0.5}>
               <h1 className="text-[3.5rem] font-semibold font-montserrat">
                 Rails Trello<span className="text-[#5046e6]">.</span>

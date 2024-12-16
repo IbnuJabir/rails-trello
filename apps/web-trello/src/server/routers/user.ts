@@ -1,10 +1,11 @@
-import { protectedProcedure, router } from "../trpc";
+import { protectedProcedure, publicProcedure, router } from "../trpc";
 import prisma from "@/lib/db";
 import { signInSchema, signUpSchema } from "@/lib/schema";
 import bcryptjs from "bcryptjs";
 import { TRPCError } from "@trpc/server";
 import { signIn } from "@/auth";
 import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export const userRouter = router({
   getUsers: protectedProcedure.query(async () => {
@@ -17,7 +18,7 @@ export const userRouter = router({
       },
     });
   }),
-  addUser: protectedProcedure
+  addUser: publicProcedure
     .input(signUpSchema)
     .mutation(async ({ input, ctx }) => {
       const { name, email, password } = input;
@@ -49,7 +50,7 @@ export const userRouter = router({
           password,
           redirect: false,
         });
-        revalidatePath("/");
+        // revalidatePath("/");
 
         return {
           success: true,
@@ -64,28 +65,26 @@ export const userRouter = router({
         });
       }
     }),
-  loginUser: protectedProcedure
-    .input(signInSchema)
-    .mutation(async ({ input }) => {
-      const { email, password } = input;
-      try {
-        const user = await signIn("credentials", {
-          email,
-          password,
-          redirect: false,
-        });
-        revalidatePath("/");
+  loginUser: publicProcedure.input(signInSchema).mutation(async ({ input }) => {
+    const { email, password } = input;
+    try {
+      const user = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      revalidatePath("/");
 
-        return {
-          success: true,
-          data: user,
-        };
-      } catch (error) {
-        console.error("Error during user login:", error);
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Something went wrong. Please try again.",
-        });
-      }
-    }),
+      return {
+        success: true,
+        data: user,
+      };
+    } catch (error) {
+      console.error("Error during user login:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Something went wrong. Please try again.",
+      });
+    }
+  }),
 });

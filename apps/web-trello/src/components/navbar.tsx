@@ -21,6 +21,7 @@ import Image from "next/image";
 import { Skeleton } from "./ui/skeleton";
 import { NavigationMenuDemo } from "./nav-menus";
 import { CreateBoard } from "./boardComponent/add-board";
+import { redirect } from "next/navigation";
 function Navbar() {
   const session = useSession();
   const user = session.data?.user;
@@ -84,7 +85,9 @@ function Navbar() {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => signOut()}>
+              <DropdownMenuItem
+                onClick={() => signOut({ callbackUrl: "/login" })}
+              >
                 <LogOut />
                 <span>Log out</span>
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

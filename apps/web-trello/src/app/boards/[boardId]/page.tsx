@@ -1,13 +1,16 @@
 "use client";
 import { trpc } from "@/server/client";
-import { useParams } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 import React from "react";
 import defaultBgImage from "@/assets/bg1.jpg";
 import { TrelloBoardBar } from "@/components/boardComponent/boardNav";
 import { MultipleContainers } from "@/components/boardComponent/MultipleContainers";
 import { rectSortingStrategy } from "@dnd-kit/sortable";
 import LoadingPage from "@/app/loading";
+import { useSession } from "next-auth/react";
 function BoardDetail() {
+  const session = useSession();
+
   const params = useParams<{ boardId: string }>();
   console.log("boardId from params", params.boardId);
 
@@ -15,20 +18,15 @@ function BoardDetail() {
     boardId: params.boardId,
   });
 
-  // const [board, setBoard] = useAtom(boardAtom);
-  // setBoard(data);
-
-  console.log("current board data", data);
-
   // Resolve the background image
   const bgImage = data?.bgImage
     ? `${process.env.NEXT_PUBLIC_TRPC_BASE_URL}${data.bgImage}`
     : defaultBgImage;
 
-  // console.log("bgImage", bgImage);
-  if (isLoading) {
-    return <LoadingPage />;
-  }
+  if (isLoading || session.status === "loading") return <LoadingPage />;
+
+  if (!session.data) return redirect("/login");
+
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -44,15 +42,12 @@ function BoardDetail() {
       />
       <div className="w-full">
         <main className="py-4 overflow-x-scroll">
-          {/* <TrelloBoard /> */}
-          {/* <MultiContainer /> */}
           <MultipleContainers
             // itemCount={5}
             strategy={rectSortingStrategy}
             vertical={false}
             boardId={params.boardId}
           />
-          {/* <BoardContent boardId={data?.id} /> */}
         </main>
       </div>
     </div>

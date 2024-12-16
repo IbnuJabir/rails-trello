@@ -24,7 +24,7 @@ export function SignupForm() {
   const router = useRouter();
   const addUser = trpc.user.addUser.useMutation({
     onSuccess: () => {
-      router.push("/");
+      router.push("/boards");
       toast.success(`User Registered successfully!`);
     },
     onError: (error) => {
@@ -119,7 +119,7 @@ export function SignupForm() {
 
         <Button
           type="submit"
-          onClick={() => signIn("google", { callbackUrl: "/" })}
+          onClick={() => signIn("google", { callbackUrl: "/boards" })}
           variant="outline"
           className="w-full my-2"
         >
@@ -130,7 +130,7 @@ export function SignupForm() {
         {/* GitHub Signup Button */}
         <Button
           type="submit"
-          onClick={() => signIn("github", { callbackUrl: "/" })}
+          onClick={() => signIn("github", { callbackUrl: "/boards" })}
           className="w-full my-2"
         >
           <FaGithub />

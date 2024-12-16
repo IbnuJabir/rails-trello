@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -41,7 +41,8 @@ export default function LoginForm() {
           toast.error("Validation Error: Check your inputs");
         }
       } else {
-        toast.error("An unexpected error occurred");
+        console.log(error);
+        toast.error(error.message);
       }
     },
   });
@@ -52,6 +53,8 @@ export default function LoginForm() {
       email: formData.get("email") as string,
       password: formData.get("password") as string,
     });
+    // redirect("/");
+    // window.history.pushState({}, "", "/");
   };
 
   return (
@@ -103,7 +106,7 @@ export default function LoginForm() {
           {/* Google Signup Button */}
           <Button
             type="submit"
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl: "/boards" })}
             variant="outline"
             className="w-full my-2"
           >
@@ -113,7 +116,7 @@ export default function LoginForm() {
           {/* GitHub Signup Button */}
           <Button
             type="submit"
-            onClick={() => signIn("github", { callbackUrl: "/" })}
+            onClick={() => signIn("github", { callbackUrl: "/boards" })}
             className="w-full my-2"
           >
             <FaGithub />

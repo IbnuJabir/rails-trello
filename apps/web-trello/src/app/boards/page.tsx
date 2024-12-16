@@ -5,12 +5,21 @@ import Link from "next/link";
 import React from "react";
 import emptyBoard from "@/assets/no-board.webp";
 import LoadingPage from "../loading";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 function Boards() {
+  const session = useSession();
+  console.log("session", session);
+
   const { data, isLoading, error } = trpc.board.getBoards.useQuery();
+
   // const use = trpc.user.getUsers.useQuery();
-  if (isLoading) return <LoadingPage />;
-  console.log("boards", data);
-  if (!data)
+  if (isLoading || session.status === "loading") return <LoadingPage />;
+
+  // console.log("boards", data);
+  if (!session.data) return redirect("/login");
+
+  if (data?.length === 0)
     return (
       <div className="w-full h-screen p-4 flex flex-col items-center justify-center relative z-10">
         <Image

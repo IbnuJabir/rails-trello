@@ -88,6 +88,7 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
 
 - **Drag-and-Drop Functionality**:
 
+  - used dnd kit @dnd-kit/core ( react-beautiful-dnd has been deprecated).
   - Smooth and intuitive movement of lists within a board to reorder priorities.
   - Shuffle and rearrange cards within a list to optimize task organization.
   - Seamless transfer of cards between lists with position persistence, ensuring data integrity and consistency.
@@ -95,8 +96,7 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
 
 - **Error Handling and Logging**:
 
-  - Comprehensive error handling ensures smooth troubleshooting and reliable application monitoring.
-  - Integrated logging provides insights into application health and user interactions.
+  - The application includes robust error handling to ensure smooth operation even when unexpected issues arise. Any errors encountered are gracefully handled, and appropriate error messages are displayed to the user or logged for debugging.
 
 - **Responsive Design**:
 
@@ -468,18 +468,30 @@ This project taught me the importance of:
 
 - Add real-time collaboration features using **WebSockets**.
 - Enhance monitoring with tools like **Sentry**.
-- Build a mobile app version using frameworks like **React Native** or **Flutter**.
 - Improve error handling for edge cases during drag-and-drop operations.
 
 ---
 
 ## Conclusion
 
-Rails Trello demonstrates my ability to design and implement a complex, scalable application with modern technologies. From addressing technical challenges to maintaining a clean codebase, this project reflects my technical proficiency and problem-solving skills. I look forward to extending this project further and exploring its potential for real-time collaboration.
+Rails Trello demonstrates my ability to design and implement a complex, scalable application with modern technologies. From addressing technical challenges to maintaining a clean codebase, this project reflects my technical proficiency, dedication, and problem-solving skills.
 
-Enjoy :D
+This home-take test assessment was a significant challenge that I embraced with full commitment, dedicating **77 hours over 5 days** to deliver the best product possible, with a focus on detailed improvements. Here's how it takes:  
+- **Thursday (1st day):** 12 hours  
+- **Friday (2nd day):** 16 hours  
+- **Saturday (3rd day):** 18 hours  
+- **Sunday (4th day):** 15 hours  
+- **Monday (5th day):** 10 hours  
 
----
+Leveraging the advantage of my **off-work week** allowed me to dive deeply into every aspect of the project, ensuring that each feature was carefully crafted and refined. Through this experience, I not only demonstrated my technical abilities but also showcased my time management, dedication, and attention to detail—qualities that I believe make me an excellent fit to join the Rails team as a Fullstack Developer.
+
+In addition, this project highlights my passion for crafting reliable and user-friendly applications. The iterative approach I followed—focusing on improving performance, user experience, and functionality—exemplifies my commitment to excellence. I am excited about the opportunity to further contribute to your team, leveraging my skills to tackle real-world challenges and deliver impactful solutions.
+
+Thank you for reviewing my work! I look forward to the possibility of joining the Rails team and contributing to its success.
+
+Enjoy :D  
+
+--- 
 
 ## Author
 
@@ -489,4 +501,4 @@ Enjoy :D
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for full details.
+This project is licensed under the MIT License.

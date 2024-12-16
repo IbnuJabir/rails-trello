@@ -1,12 +1,8 @@
 # Rails Trello
 
----
-
 ## Live
 
-_Deployed link to be added here (e.g., Vercel or other hosting platforms)._
-
----
+[Live Demo](https://trello-on-rails.vercel.app)
 
 ## Screenshots
 

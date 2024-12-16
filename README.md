@@ -11,20 +11,27 @@
 ### Desktop
 
 ![s1](./apps/web-trello/src/assets/ss1.png)
+---
 ![s1](./apps/web-trello/src/assets/ss2.png)
+---
 ![s1](./apps/web-trello/src/assets/ss3.png)
 
 ### Tablet
 
 ![s1](./apps/web-trello/src/assets/ss4.png)
+---
 ![s1](./apps/web-trello/src/assets/ss5.png)
+---
 ![s1](./apps/web-trello/src/assets/ss6.png)
 
 ### Mobile
 
 ![s1](./apps/web-trello/src/assets/ss7.png)
+---
 ![s1](./apps/web-trello/src/assets/ss8.png)
+---
 ![s1](./apps/web-trello/src/assets/ss9.png)
+---
 ![s1](./apps/web-trello/src/assets/ss10.png)
 
 ---

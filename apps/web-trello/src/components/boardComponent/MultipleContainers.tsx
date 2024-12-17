@@ -179,7 +179,7 @@ export function MultipleContainers({
   const utils = trpc.useUtils();
   const createList = trpc.list.create.useMutation({
     onSuccess: () => {
-      utils.list.getAll.invalidate({ boardId });
+      utils.list.getAll.invalidate();
       // trpc.list.getAll.invalidate({ boardId });
     },
   });

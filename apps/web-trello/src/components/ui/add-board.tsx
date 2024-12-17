@@ -50,10 +50,11 @@ export function CreateBoard() {
     isPrivate: true,
   });
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog open/close
-
+  const utils = trpc.useUtils();
   const createBoard = trpc.board.createBoard.useMutation({
     onSuccess: (data) => {
       toast.success("Board created successfully!");
+      utils.board.getBoards.invalidate();
       setIsDialogOpen(false); // Close the dialog on success
     },
     onError: (error) => {

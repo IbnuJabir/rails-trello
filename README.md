@@ -93,7 +93,14 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
   - Shuffle and rearrange cards within a list to optimize task organization.
   - Seamless transfer of cards between lists with position persistence, ensuring data integrity and consistency.
   - All movements are automatically saved and persist in the database for a consistent experience across sessions.
-
+    
+- **CI/CD Pipeline**:
+  
+  - Implemented a **CI/CD pipeline** using **GitHub Actions** for automated workflows.  
+  - Ensures code changes are tested, built, and deployed seamlessly with each update.  
+  - Features automated testing, environment-specific deployments (e.g., dev, staging, production), and real-time error reporting.  
+  - Improves development efficiency by reducing manual intervention and ensuring reliable deployments.
+    
 - **Error Handling and Logging**:
 
   - The application includes robust error handling to ensure smooth operation even when unexpected issues arise. Any errors encountered are gracefully handled, and appropriate error messages are displayed to the user or logged for debugging.

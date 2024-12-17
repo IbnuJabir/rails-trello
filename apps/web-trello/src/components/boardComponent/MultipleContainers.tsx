@@ -598,7 +598,7 @@ export function MultipleContainers({
                               <div className="flex-grow cursor-grab">
                                 {card?.title}
                               </div>
-                              <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                              {/* <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <button
                                   onClick={() => handleEditCard(card?.id)}
                                   className="p-1 hover:bg-gray-200 rounded"
@@ -611,7 +611,7 @@ export function MultipleContainers({
                                 >
                                   <TrashIcon className="size-4" />
                                 </button>
-                              </div>
+                              </div> */}
                             </div>
                             {editingCardId === card?.id && (
                               <div className="mt-2">

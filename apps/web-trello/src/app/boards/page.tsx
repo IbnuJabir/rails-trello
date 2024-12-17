@@ -7,6 +7,7 @@ import emptyBoard from "@/assets/no-board.webp";
 import LoadingPage from "../loading";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { CreateBoard } from "@/components/boardComponent/add-board";
 function Boards() {
   const session = useSession();
   console.log("session", session);
@@ -22,6 +23,7 @@ function Boards() {
   if (data?.length === 0)
     return (
       <div className="w-full h-screen p-4 flex flex-col items-center justify-center relative z-10">
+        <CreateBoard />
         <Image
           src={emptyBoard}
           alt="background"

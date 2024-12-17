@@ -1,12 +1,14 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { NavigationMenuDemo } from "./nav-menus";
 import Account from "./account";
 import { CreateBoard } from "./ui/add-board";
+import { auth } from "@/auth";
 
-function Navbar() {
+async function Navbar() {
+  const session = await auth();
+  console.log("session from server nav", session);
   return (
     <div className="w-full h-14 flex justify-between items-center text-white px-4 sm:px-10 border-b-[.2px] border-gray-700 bg-gray-950 z-[99999999] sticky">
       <div className="flex items-center justify-between w-full md:w-1/2">

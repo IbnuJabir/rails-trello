@@ -52,13 +52,13 @@ export function CreateBoard() {
     isPrivate: true,
   });
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State to manage dialog open/close
-
+  const utils = trpc.useUtils();
   const createBoard = trpc.board.createBoard.useMutation({
     onSuccess: (data) => {
       console.log(data);
       toast.success("Board created successfully!");
       setIsDialogOpen(false); // Close the dialog on success
-      // router.push(`/board/${data.id}`);
+      utils.board.getBoards.invalidate();
     },
     onError: (error) => {
       console.log(error);
@@ -95,7 +95,7 @@ export function CreateBoard() {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 z-50 cursor-pointer bg-black text-white p-2 rounded-sm">
           <Plus className="bg-black text-white rounded-sm p-1 size-6 cursor-pointer" />
           Create a New board
         </div>

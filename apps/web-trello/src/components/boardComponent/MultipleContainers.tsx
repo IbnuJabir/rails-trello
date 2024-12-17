@@ -169,7 +169,6 @@ export function MultipleContainers({
 
   const params = useParams<{ boardId: string }>();
   const boardId = params.boardId;
-  console.log("board ID from the child", params.boardId);
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const lastOverId = useRef<UniqueIdentifier | null>(null);
@@ -442,7 +441,7 @@ export function MultipleContainers({
                 ),
               ],
             };
-            console.log("Drag End data", data);
+            // console.log("Drag End data", data);
             updateAllList.mutate(data);
             return data;
           });
@@ -471,7 +470,7 @@ export function MultipleContainers({
               //   });
               // }
               updateListPositions.mutate(newContainers);
-              console.log("newContainers", newContainers);
+              // console.log("newContainers", newContainers);
               return newContainers;
             }
 

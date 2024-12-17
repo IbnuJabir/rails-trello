@@ -12,7 +12,6 @@ function BoardDetail() {
   const session = useSession();
 
   const params = useParams<{ boardId: string }>();
-  console.log("boardId from params", params.boardId);
 
   const { data, isLoading, error } = trpc.board.getBoard.useQuery({
     boardId: params.boardId,

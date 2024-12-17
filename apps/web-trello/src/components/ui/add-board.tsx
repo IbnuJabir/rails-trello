@@ -53,7 +53,6 @@ export function CreateBoard() {
 
   const createBoard = trpc.board.createBoard.useMutation({
     onSuccess: (data) => {
-      console.log(data);
       toast.success("Board created successfully!");
       setIsDialogOpen(false); // Close the dialog on success
     },
@@ -73,7 +72,6 @@ export function CreateBoard() {
 
   const CreateBoard = async () => {
     console.log("Creating board...");
-    console.log(board);
     if (!board.bgImage) {
       toast.error("Select Board background image");
       return;

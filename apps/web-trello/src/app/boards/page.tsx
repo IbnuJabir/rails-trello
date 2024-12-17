@@ -10,7 +10,6 @@ import { redirect } from "next/navigation";
 import { CreateBoard } from "@/components/boardComponent/add-board";
 function Boards() {
   const session = useSession();
-  console.log("session", session);
 
   const { data, isLoading, error } = trpc.board.getBoards.useQuery();
 

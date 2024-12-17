@@ -46,6 +46,7 @@ import { boardAtom, listsAtom, cardsAtom } from "@/lib/atoms";
 import { trpc } from "@/server/client";
 import { useParams } from "next/navigation";
 import { Button } from "../ui/button";
+import { Edit, Edit2, Edit2Icon, TrashIcon } from "lucide-react";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
@@ -358,6 +359,27 @@ export function MultipleContainers({
     }
   };
   const updateAllList = trpc.list.updateAll.useMutation();
+  const [editingCardId, setEditingCardId] = useState<string | null>(null);
+  const [editCardTitle, setEditCardTitle] = useState("");
+
+  const handleEditCard = (cardId: string) => {
+    const card = cards.find((c) => c.id === cardId);
+    if (card) {
+      setEditingCardId(cardId);
+      setEditCardTitle(card.title);
+    }
+  };
+
+  const handleUpdateCard = (cardId: string) => {
+    // Implement your update logic here
+    // For example: updateCard(cardId, editCardTitle);
+    setEditingCardId(null);
+  };
+
+  const handleDeleteCard = (cardId: string) => {
+    // Implement your delete logic here
+    // For example: deleteCard(cardId);
+  };
   return (
     <DndContext
       sensors={sensors}
@@ -562,24 +584,71 @@ export function MultipleContainers({
                 {items[containerId].map((value, index) => {
                   const card = cards.find((card) => card.id === value);
                   return (
-                    <SortableItem
-                      disabled={false}
-                      key={value}
-                      id={value}
-                      index={index}
-                      handle={true}
-                      wrapperStyle={wrapperStyle}
-                      renderItem={() => (
-                        <div className="p-2 bg-white rounded shadow cursor-grab">
-                          {card?.title}
-                        </div>
-                      )}
-                      containerId={containerId}
-                      getIndex={getIndex}
-                    />
+                    <div className="w-full mb-2" key={value}>
+                      <SortableItem
+                        disabled={false}
+                        key={value}
+                        id={value}
+                        index={index}
+                        handle={true}
+                        wrapperStyle={wrapperStyle}
+                        renderItem={() => (
+                          <div className="w-full p-2 bg-white rounded shadow group">
+                            <div className="flex items-center justify-between">
+                              <div className="flex-grow cursor-grab">
+                                {card?.title}
+                              </div>
+                              <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button
+                                  onClick={() => handleEditCard(card?.id)}
+                                  className="p-1 hover:bg-gray-200 rounded"
+                                >
+                                  <Edit2Icon className="size-4" />
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteCard(card?.id)}
+                                  className="p-1 hover:bg-gray-200 rounded"
+                                >
+                                  <TrashIcon className="size-4" />
+                                </button>
+                              </div>
+                            </div>
+                            {editingCardId === card?.id && (
+                              <div className="mt-2">
+                                <input
+                                  type="text"
+                                  value={editCardTitle}
+                                  onChange={(e) =>
+                                    setEditCardTitle(e.target.value)
+                                  }
+                                  className="w-full p-1 border rounded"
+                                />
+                                <div className="flex justify-end mt-1 space-x-2">
+                                  <button
+                                    onClick={() => handleUpdateCard(card?.id)}
+                                    className="px-2 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                                  >
+                                    Update
+                                  </button>
+                                  <button
+                                    onClick={() => setEditingCardId(null)}
+                                    className="px-2 py-1 text-sm bg-gray-300 rounded hover:bg-gray-400"
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        containerId={containerId}
+                        getIndex={getIndex}
+                      />
+                    </div>
                   );
                 })}
               </SortableContext>
+
               <div className="p-2 flex items-center justify-center gap-2">
                 <Input
                   placeholder="Add a card..."
@@ -734,23 +803,31 @@ function SortableItem({
     transition,
   };
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Item
-        ref={disabled ? undefined : setNodeRef}
-        value={id}
-        dragging={isDragging}
-        sorting={isSorting}
-        handle={handle}
-        handleProps={handle ? listeners : undefined}
-        index={index}
-        wrapperStyle={wrapperStyle({ index })}
+    <div className="flex items-center">
+      <div
+        ref={setNodeRef}
         style={style}
-        transition={transition}
-        transform={transform}
-        fadeIn={mountedWhileDragging}
-        listeners={handle ? undefined : listeners}
-        renderItem={renderItem}
-      />
+        {...attributes}
+        {...listeners}
+        className="w-full"
+      >
+        <Item
+          ref={disabled ? undefined : setNodeRef}
+          value={id}
+          dragging={isDragging}
+          sorting={isSorting}
+          handle={handle}
+          handleProps={handle ? listeners : undefined}
+          index={index}
+          wrapperStyle={wrapperStyle({ index })}
+          style={style}
+          transition={transition}
+          transform={transform}
+          fadeIn={mountedWhileDragging}
+          listeners={handle ? undefined : listeners}
+          renderItem={renderItem}
+        />
+      </div>
     </div>
   );
 }

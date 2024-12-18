@@ -38,15 +38,13 @@ import { coordinateGetter as multipleContainersCoordinateGetter } from "./multip
 
 import { Item } from "../Item";
 import { Container, ContainerProps } from "../Container";
-// import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import { Plus } from "lucide-react";
 import { useAtom } from "jotai";
 import { boardAtom, listsAtom, cardsAtom } from "@/lib/atoms";
 import { trpc } from "@/server/client";
 import { useParams } from "next/navigation";
 import { Button } from "../ui/button";
-import { Edit, Edit2, Edit2Icon, TrashIcon } from "lucide-react";
+import { Edit2Icon, TrashIcon } from "lucide-react";
 
 const animateLayoutChanges: AnimateLayoutChanges = (args) =>
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });

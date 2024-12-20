@@ -44,7 +44,7 @@ function Boards() {
           >
             <Image
               src={board.bgImage || "/bg1.jpg"}
-              alt="board background "
+              alt="board background"
               fill
               className="object-cover -z-50 rounded-sm hover:bg-slate-500"
             />

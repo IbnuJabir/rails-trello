@@ -10,11 +10,9 @@ import { useSession } from "next-auth/react";
 export default function Home() {
   const session = useSession();
   const user = session.data?.user;
-  // if (!user) redirect("/login?callbackUrl=/");
   const words = ["organized", "productive", "collaborative", "streamlined"];
   return (
     <div className=" text-white bg-gray-950 font-sans h-full w-full">
-      {/* <Navbar /> */}
       <BackgroundBeamsWithCollision>
         <Vortex
           rangeY={800}
@@ -34,13 +32,13 @@ export default function Home() {
               Workflow with Our Boards
             </div>
             {user ? (
-              <Link href="boards">
+              <Link href="/boards">
                 <Button className="bg-white text-black hover:bg-gray-300">
                   Go to Boards
                 </Button>
               </Link>
             ) : (
-              <Link href="login">
+              <Link href="/login">
                 <Button className="bg-white text-black hover:bg-gray-300">
                   Get Started
                 </Button>
@@ -52,30 +50,4 @@ export default function Home() {
       </BackgroundBeamsWithCollision>
     </div>
   );
-  // return (
-  //   <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-  //     <Test />
-  //     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-  //       <h1 className="text-4xl font-bold text-center sm:text-5xl">
-  //         Users ({users.length})
-  //       </h1>
-  //       {users.map((user) => (
-  //         <li key={user.id}>{user.name}</li>
-  //       ))}
-  //     </main>
-  //     <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-  //       <form
-  //         action={async () => {
-  //           "use server";
-  //           await signOut();
-  //         }}
-  //       >
-  //         <Input type="hidden" name="csrfToken" value="hello" />
-  //         <Button type="submit" variant="outline" className="w-full">
-  //           LogOut here
-  //         </Button>
-  //       </form>
-  //     </footer>
-  //   </div>
-  // );
 }

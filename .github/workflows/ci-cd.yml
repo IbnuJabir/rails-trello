@@ -9,6 +9,8 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  WORKING_DIR: apps/web-trello
+
 
 jobs:
   build-and-test:
@@ -33,11 +35,15 @@ jobs:
       - name: Generate Prisma client
         run: pnpx prisma generate --schema=apps/web-trello/prisma/schema.prisma
 
-      - name: Set working directory
-        run: cd apps/web-trello
-
       - name: Run tests
-        run: pnpm test
+        run: |
+          cd $WORKING_DIR
+          pnpm test
+      
+      - name: Build project
+        run: |
+          cd $WORKING_DIR
+          pnpm build
 
   build-and-push-image:
     needs: build-and-test

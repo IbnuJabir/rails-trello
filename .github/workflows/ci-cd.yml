@@ -30,11 +30,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Set working directory
-        run: cd apps/web-trello
-
       - name: Generate Prisma client
-        run: pnpx prisma generate
+        run: pnpx prisma generate --schema=apps/web-trello/prisma/schema.prisma
 
       - name: Run tests
         run: pnpm test

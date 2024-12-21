@@ -149,7 +149,7 @@ describe("Boards Page", () => {
     const boardLinks = screen.getAllByRole("link");
     expect(boardLinks).toHaveLength(mockBoards.length);
     boardLinks.forEach((link, index) => {
-      expect(link).toHaveAttribute("href", `/boards/${mockBoards[index].id}`);
+      expect(link).toHaveAttribute("href", `/boards/${mockBoards[index]?.id}`);
     });
 
     // Verify images are rendered with correct fallback
@@ -157,7 +157,7 @@ describe("Boards Page", () => {
     boardImages.forEach((image, index) => {
       expect(image).toHaveAttribute(
         "src",
-        mockBoards[index].bgImage || "/bg1.jpg"
+        mockBoards[index]?.bgImage || "/bg1.jpg"
       );
     });
   });

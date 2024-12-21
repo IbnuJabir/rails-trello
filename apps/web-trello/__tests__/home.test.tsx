@@ -35,11 +35,6 @@ describe("Home Component", () => {
       screen.getByRole("heading", { name: /Rails Trello \./i }) // Match "Rails Trello ." with regex
     ).toBeInTheDocument();
 
-    // Check if FlipWords text is rendered
-    // expect(
-    //   screen.getByText(/empower your organized workflow with our boards/i)
-    // ).toBeInTheDocument();
-
     // Check if "Get Started" button is rendered and links to the login page
     const getStartedButton = screen.getByRole("link", { name: /get started/i });
     expect(getStartedButton).toBeInTheDocument();
@@ -58,11 +53,6 @@ describe("Home Component", () => {
     expect(
       screen.getByRole("heading", { name: /Rails Trello \./i }) // Match "Rails Trello ." with regex
     ).toBeInTheDocument();
-
-    // // Check if FlipWords text is rendered
-    // expect(
-    //   screen.getByText(/empower your organized workflow with our boards/i)
-    // ).toBeInTheDocument();
 
     // Check if "Go to Boards" button is rendered and links to the boards page
     const goToBoardsButton = screen.getByRole("link", {

@@ -92,7 +92,7 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER}@${HOST} '
-            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+            docker pull ghcr.io/ibnujabir/rails-trello:main
             docker stop rails-trello || true
             docker rm rails-trello || true
             docker run -d --name rails-trello -p 3000:3000 \

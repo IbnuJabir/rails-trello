@@ -34,7 +34,7 @@ jobs:
         run: pnpx prisma generate --schema=apps/web-trello/prisma/schema.prisma
 
       - name: Set working directory
-        run: cd path/to/correct-folder
+        run: cd apps/web-trello
 
       - name: Run tests
         run: pnpm test

@@ -85,6 +85,10 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
 
   - Showcases all lists and cards within a selected board, providing users with a detailed view of their projects.
   - Enables the creation of new lists and cards directly within a board.
+ 
+- **Edit and Delete Cards**:
+  
+  - Add the ability to edit and delete lists directly from the UI.
 
 - **Drag-and-Drop Functionality**:
 
@@ -100,6 +104,11 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
   - Ensures code changes are tested, built, and deployed seamlessly with each update.  
   - Features automated testing, environment-specific deployments (e.g., dev, staging, production), and real-time error reporting.  
   - Improves development efficiency by reducing manual intervention and ensuring reliable deployments.
+    
+- **Unit Tests**:
+  
+  - The project includes unit tests to verify the behavior of the core functionalities.
+  - These tests ensure the application's features work as expected.
     
 - **Error Handling and Logging**:
 
@@ -118,10 +127,8 @@ Rails Trello is a Trello-inspired application built with cutting-edge technologi
 
 ### Additional Features Under Development
 
-- **Edit Cards and Lists**:
-  - Add the ability to edit details of cards and lists directly from the UI.
-- **Delete Cards and Lists**:
-  - Implement functionality to remove cards and lists as required.
+- **Edit and Delete Cards**:
+  - Implement functionality to edit and remove cards as required.
 
 ---
 

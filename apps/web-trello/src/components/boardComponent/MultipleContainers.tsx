@@ -54,6 +54,7 @@ function DroppableContainer({
   columns = 1,
   disabled,
   id,
+  boardId,
   items,
   style,
   ...props
@@ -62,6 +63,7 @@ function DroppableContainer({
   id: UniqueIdentifier;
   items: UniqueIdentifier[];
   style?: React.CSSProperties;
+  boardId: string;
 }) {
   const {
     active,
@@ -87,6 +89,8 @@ function DroppableContainer({
 
   return (
     <Container
+      boardId={boardId}
+      listId={id}
       ref={disabled ? undefined : setNodeRef}
       style={{
         ...style,
@@ -576,6 +580,7 @@ export function MultipleContainers({
               items={items[containerId]}
               style={containerStyle}
               unstyled={minimal}
+              boardId={boardId}
             >
               <SortableContext items={items[containerId]} strategy={strategy}>
                 {items[containerId].map((value, index) => {
@@ -721,6 +726,7 @@ export function MultipleContainers({
     const list = lists.find((list) => list.id === containerId);
     return (
       <Container
+        listId={list?.id}
         label={list?.name || `List ${containerId}`}
         columns={columns}
         style={{

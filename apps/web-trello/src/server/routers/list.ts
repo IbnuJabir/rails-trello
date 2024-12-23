@@ -2,6 +2,7 @@ import { z } from "zod";
 import { protectedProcedure, router } from "../trpc";
 import prisma from "@/lib/db";
 import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export const listRouter = router({
   getAll: protectedProcedure
@@ -26,12 +27,13 @@ export const listRouter = router({
       });
     }),
   update: protectedProcedure
-    .input(z.object({ id: z.string(), position: z.number() }))
+    .input(z.object({ id: z.string(), name: z.string() }))
     .mutation(async ({ input }) => {
-      return prisma.list.update({
+      await prisma.list.update({
         where: { id: input.id },
-        data: { position: input.position },
+        data: { name: input.name },
       });
+      revalidatePath("/boards");
     }),
   updateAll: protectedProcedure
     .input(
@@ -93,6 +95,10 @@ export const listRouter = router({
   remove: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input }) => {
+      // first delete every card that hast this listId
+      await prisma.card.deleteMany({
+        where: { listId: input.id },
+      });
       return prisma.list.delete({
         where: { id: input.id },
       });

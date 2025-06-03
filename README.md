@@ -484,27 +484,6 @@ This project taught me the importance of:
 - Enhance monitoring with tools like **Sentry**.
 - Improve error handling for edge cases during drag-and-drop operations.
 
----
-
-## Conclusion
-
-Rails Trello demonstrates my ability to design and implement a complex, scalable application with modern technologies. From addressing technical challenges to maintaining a clean codebase, this project reflects my technical proficiency, dedication, and problem-solving skills.
-
-This home-take test assessment was a significant challenge that I embraced with full commitment, dedicating **77 hours over 5 days** to deliver the best product possible, with a focus on detailed improvements. Here's how it takes:  
-- **Thursday (1st day):** 12 hours  
-- **Friday (2nd day):** 16 hours  
-- **Saturday (3rd day):** 18 hours  
-- **Sunday (4th day):** 15 hours  
-- **Monday (5th day):** 10 hours  
-
-Leveraging the advantage of my **off-work week** allowed me to dive deeply into every aspect of the project, ensuring that each feature was carefully crafted and refined. Through this experience, I not only demonstrated my technical abilities but also showcased my time management, dedication, and attention to detail—qualities that I believe make me an excellent fit to join the Rails team as a Fullstack Developer.
-
-Due to time constraints, I was unable to implement all of the planned features and enhancements. However, I successfully delivered almost all of the core functionalities outlined in the assessment guidelines. The application includes robust features such as user authentication, board management, drag-and-drop functionality, and a CI/CD pipeline, ensuring a functional and user-friendly experience. I plan to continue improving and expanding the project in the future.
-
-In addition, this project highlights my passion for crafting reliable and user-friendly applications. The iterative approach I followed—focusing on improving performance, user experience, and functionality—exemplifies my commitment to excellence. I am excited about the opportunity to further contribute to your team, leveraging my skills to tackle real-world challenges and deliver impactful solutions.
-
-Thank you for reviewing my work! I look forward to the possibility of joining the Rails team and contributing to its success.
-
 Enjoy :D  
 
 --- 
